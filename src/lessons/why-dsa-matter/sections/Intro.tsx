@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { QuickCheck } from "../../../components/shared/QuickCheck";
 
 export function Intro() {
   return (
@@ -32,10 +33,14 @@ export function Intro() {
           Remove a value
         </li>
       </ul>
-      <p className="leading-relaxed text-slate-600 dark:text-slate-300">
+      <p className="mb-6 leading-relaxed text-slate-600 dark:text-slate-300">
         Understanding how many steps each operation takes for different
         structures is critical for choosing appropriate data structures.
       </p>
+      <QuickCheck
+        question="Quick check: If you have 100 items in an array and insert at the beginning, how many steps does it take?"
+        answer="101 steps. You must shift all 100 items right (100 steps), then insert (1 step)."
+      />
     </motion.div>
   );
 }

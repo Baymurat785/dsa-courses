@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Header } from "../components/layout/Header";
-import { BookOpen } from "lucide-react";
+import { BookOpen, Lock } from "lucide-react";
+import { lessonsData } from "../data/lessons";
 
 export function HomePage() {
   return (
@@ -27,27 +28,51 @@ export function HomePage() {
           transition={{ delay: 0.1 }}
           className="mt-12"
         >
-          <h2 className="mb-4 text-lg font-semibold text-slate-900 dark:text-white">
-            Lessons
+          <h2 className="mb-6 text-xl font-semibold text-slate-900 dark:text-white">
+            Lesson Curriculum
           </h2>
-          <Link
-            to="/lessons/why-dsa-matter"
-            className="block rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:border-indigo-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:border-indigo-700"
-          >
-            <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-100 dark:bg-indigo-900/30">
-                <BookOpen className="h-6 w-6 text-indigo-600 dark:text-indigo-400" />
-              </div>
-              <div className="text-left">
-                <h3 className="font-semibold text-slate-900 dark:text-white">
-                  Why DSA Matter?
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400">
-                  Arrays, Sets, and Loop Efficiency
-                </p>
-              </div>
-            </div>
-          </Link>
+          <ol className="space-y-2">
+            {lessonsData.map((lesson, index) => {
+              const isAvailable = lesson.available ?? false;
+              const content = (
+                <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-sm font-semibold text-slate-600 dark:bg-slate-800 dark:text-slate-400">
+                    {index + 1}
+                  </span>
+                  <div className="min-w-0 flex-1 text-left">
+                    <h3 className="font-medium text-slate-900 dark:text-white">
+                      {lesson.title}
+                    </h3>
+                    {!isAvailable && (
+                      <p className="text-xs text-slate-500 dark:text-slate-400">
+                        Coming soon
+                      </p>
+                    )}
+                  </div>
+                  {isAvailable ? (
+                    <BookOpen className="h-5 w-5 shrink-0 text-indigo-600 dark:text-indigo-400" />
+                  ) : (
+                    <Lock className="h-4 w-4 shrink-0 text-slate-400" />
+                  )}
+                </div>
+              );
+
+              return (
+                <li key={lesson.id}>
+                  {isAvailable ? (
+                    <Link
+                      to={`/lessons/${lesson.id}`}
+                      className="block transition-opacity hover:opacity-90"
+                    >
+                      {content}
+                    </Link>
+                  ) : (
+                    <div className="cursor-not-allowed opacity-75">{content}</div>
+                  )}
+                </li>
+              );
+            })}
+          </ol>
         </motion.div>
       </main>
     </div>
