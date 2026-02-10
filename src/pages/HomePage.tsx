@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Header } from "../components/layout/Header";
-import { BookOpen, Lock } from "lucide-react";
+import { BookOpen, Lock, FileText } from "lucide-react";
 import { lessonsData } from "../data/lessons";
 
 export function HomePage() {
@@ -25,8 +25,32 @@ export function HomePage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
+          transition={{ delay: 0.05 }}
           className="mt-12"
+        >
+          <Link
+            to="/articles"
+            className="mb-6 flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-4 shadow-sm transition hover:border-indigo-200 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:border-indigo-800/50"
+          >
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-indigo-100 text-indigo-600 dark:bg-indigo-900/50 dark:text-indigo-400">
+              <FileText className="h-5 w-5" />
+            </span>
+            <div className="text-left">
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-white">
+                DSA Articles
+              </h2>
+              <p className="text-sm text-slate-500 dark:text-slate-400">
+                Short reads on data structures—concepts, analogies, and examples.
+              </p>
+            </div>
+          </Link>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="mt-8"
         >
           <h2 className="mb-6 text-xl font-semibold text-slate-900 dark:text-white">
             Lesson Curriculum
