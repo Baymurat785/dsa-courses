@@ -30,7 +30,22 @@ export const lessonsData: Lesson[] = [
       { id: "loop", title: "Loop Efficiency", viz: "LoopComparison" },
     ],
   },
-  { id: "why-algorithms-matter", title: "Why Algorithms Matter", available: false, chapters: [] },
+  {
+    id: "why-algorithms-matter",
+    title: "Why Algorithms Matter",
+    available: true,
+    chapters: [
+      { id: "worst-case", title: "Why Algorithms Matter", viz: null },
+      {
+        id: "ordered-arrays",
+        title: "Ordered Arrays",
+        subsections: ["Read", "Insert", "Delete", "Search"],
+        viz: null,
+      },
+      { id: "binary-search", title: "Binary Search Algorithm", viz: "BinarySearch" },
+      { id: "algorithm-choice", title: "Algorithm Choice Matters", viz: null },
+    ],
+  },
   { id: "big-o-notation", title: "O Yes! Big O Notation", available: false, chapters: [] },
   { id: "speeding-up-big-o", title: "Speeding Up Your Code with Big O", available: false, chapters: [] },
   { id: "optimizing-code", title: "Optimizing Code with and Without Big O", available: false, chapters: [] },
